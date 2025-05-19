@@ -11,9 +11,7 @@
   <!-- Custom Styles -->
   <style>
     /* Smooth scroll */
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
@@ -33,6 +31,16 @@
     /* Navbar styling override */
     .navbar {
       background: rgba(255, 255, 255, 0.9);
+    }
+
+    /* Carousel overrides */
+    .carousel-item img {
+      max-height: 400px;
+      object-fit: cover;
+    }
+
+    .carousel-indicators [data-bs-target] {
+      background-color: #ff6f61;
     }
 
     /* Section titles */
@@ -97,9 +105,7 @@
       border-radius: 0.5rem;
       transition: background 0.3s;
     }
-    #restartBtn:hover {
-      background: #de4263;
-    }
+    #restartBtn:hover { background: #de4263; }
 
     /* Footer styling */
     footer {
@@ -111,7 +117,6 @@
 </head>
 
 <body>
-
   <!-- Header -->
   <header class="header text-center">
     <h1>GAME SEDERHANA</h1>
@@ -127,13 +132,43 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mx-auto">
-          <li class="nav-item"><a class="nav-link active" href="#game">Cara Main</a></li>
+          <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#game">Cara Main</a></li>
+          <li class="nav-item"><a class="nav-link" href="#carouselSection">Gallery</a></li>
           <li class="nav-item"><a class="nav-link" href="#play">Main Sekarang</a></li>
           <li class="nav-item"><a class="nav-link" href="#contact">Hubungi Kami</a></li>
         </ul>
       </div>
     </div>
   </nav>
+
+  <!-- Carousel Section -->
+  <section id="carouselSection">
+    <div id="gameCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#gameCarousel" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#gameCarousel" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#gameCarousel" data-bs-slide-to="2"></button>
+      </div>
+      <div class="carousel-inner text-center">
+        <div class="carousel-item active">
+          <img src="game1.png" class="d-block w-100" alt="Gameplay">
+        </div>
+        <div class="carousel-item">
+          <img src="gameover1.png" class="d-block w-100" alt="Game Over">
+        </div>
+        <div class="carousel-item">
+          <img src="mobilmaju.png" class="d-block w-100" alt="Car in Action">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#gameCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#gameCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+    </div>
+  </section>
 
   <!-- Cara Main Section -->
   <section id="game" class="py-5">
