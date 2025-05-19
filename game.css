@@ -1,0 +1,29 @@
+body {
+  margin: 0;
+  background: #222;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+  user-select: none;
+}
+#gameCanvas {
+  background: #555555;
+  display: block;
+  margin: 20px auto;
+  border: 3px solid #111;
+}
+#gameOverScreen {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: red;
+  font-size: 36px;
+  text-align: center;
+  display: none;
+}
+#restartBtn {
+  margin-top: 20px;
+  font-size: 20px;
+  padding: 8px 20px;
+  cursor: pointer;
+}
