@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Game Mobil Rintangan</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Custom Styles -->
+  <style>
+    /* Smooth scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #e0eafc, #cfdef3);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #333;
+      min-height: 100vh;
+    }
+
+    /* Header styling */
+    .header {
+      background: linear-gradient(90deg, #ff6f61, #de4263);
+      padding: 3rem 1rem;
+      color: #fff;
+    }
+
+    /* Navbar styling override */
+    .navbar {
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    /* Section titles */
+    .section-title {
+      font-weight: bold;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+    .section-title::after {
+      content: '';
+      width: 60px;
+      height: 4px;
+      background: #ff6f61;
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    /* Card wrapper for game */
+    .game-card {
+      max-width: 750px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 1rem;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      position: relative;
+      padding: 1.5rem;
+    }
+
+    #gameCanvas {
+      display: block;
+      margin: 1rem auto;
+      border-radius: 1rem;
+      border: 4px solid #333;
+      background: #f8f9fa;
+    }
+
+    #gameOverScreen {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0, 0, 0, 0.8);
+      color: #ff6f61;
+      font-size: 2rem;
+      font-weight: bold;
+      padding: 1rem 2rem;
+      border-radius: 0.5rem;
+      display: none;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+    }
+
+    #restartBtn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.5rem 1.5rem;
+      font-size: 1rem;
+      background: #ff6f61;
+      color: #fff;
+      border: none;
+      border-radius: 0.5rem;
+      transition: background 0.3s;
+    }
+    #restartBtn:hover {
+      background: #de4263;
+    }
+
+    /* Footer styling */
+    footer {
+      background: #333;
+      color: #ddd;
+      padding: 2rem 1rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header class="header text-center">
+    <h1>GAME SEDERHANA</h1>
+    <p class="lead">Rintangan Mobil Seru di Ujung Jari</p>
+  </header>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Menu</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item"><a class="nav-link active" href="#game">Cara Main</a></li>
+          <li class="nav-item"><a class="nav-link" href="#play">Main Sekarang</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Hubungi Kami</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Cara Main Section -->
+  <section id="game" class="py-5">
+    <div class="container">
+      <h2 class="section-title text-center">Cara Main</h2>
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Gunakan tombol <strong>&larr;</strong> dan <strong>&rarr;</strong> untuk menggerakkan mobil.</li>
+            <li class="list-group-item">Tekan <strong>&uarr;</strong> untuk maju.</li>
+            <li class="list-group-item">Hindari semua rintangan yang turun.</li>
+            <li class="list-group-item">Game berakhir jika menabrak.</li>
+            <li class="list-group-item">Klik "Main Ulang" untuk mencoba lagi.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Game Section -->
+  <section id="play" class="py-5 bg-light">
+    <div class="container">
+      <h2 class="section-title text-center">Main Sekarang</h2>
+      <div class="game-card">
+        <canvas id="gameCanvas" width="700" height="400"></canvas>
+        <div id="gameOverScreen">
+          GAME OVER
+          <br>
+          <button id="restartBtn">Main Ulang</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-5">
+    <div class="container">
+      <h2 class="section-title text-center">Hubungi Kami</h2>
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <form>
+            <div class="mb-3">
+              <label for="nama" class="form-label">Nama</label>
+              <input type="text" class="form-control" id="nama" placeholder="Masukkan Nama" required>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" placeholder="Masukkan Email" required>
+            </div>
+            <div class="mb-3">
+              <label for="pesan" class="form-label">Pesan</label>
+              <textarea class="form-control" id="pesan" rows="4" placeholder="Tulis Pesan Anda" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Kirim Pesan</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center">
+    <div class="container">
+      <p class="mb-1">Game Mobil Rintangan © 2025. Semua Hak Dilindungi.</p>
+      <p>Dikembangkan oleh ZAKI AULIA XI RPL 2.</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap & Game JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
